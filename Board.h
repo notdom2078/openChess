@@ -17,10 +17,17 @@ public:
 
 	char getArtAt(int i, int j) const;
 
-public:
+	bool playingAsWhite() const;
+
+private:
 	bool whiteSide;
 	std::vector<std::vector<Piece*>> board;
 };
+
+bool Board::playingAsWhite() const
+{
+	return whiteSide;
+}
 
 Piece* Board::pieceAt(int i, int j) const
 {
@@ -91,7 +98,7 @@ std::ostream& operator<<(std::ostream& os, const Board& b)
 
 	for (int i = 0; i < 8; i++)
 	{
-		os << (b.whiteSide ? (8 - i) : (i + 1)) << " ";
+		os << (b.playingAsWhite() ? (8 - i) : (i + 1)) << " ";
 		for (int j = 0; j < 8; j++)
 		{
 			os << "| " << b.getArtAt(i, j) << " ";
